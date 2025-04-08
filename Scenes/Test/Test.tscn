@@ -1,0 +1,29 @@
+[gd_scene load_steps=4 format=3 uid="uid://brojf0cxw8qbk"]
+
+[ext_resource type="Texture2D" uid="uid://f8pg242nd38e" path="res://assets/background/rocks_2.png" id="1_dr6pc"]
+[ext_resource type="Texture2D" uid="uid://p5rc35dcc5iy" path="res://assets/background/rocks_1.png" id="1_wjuvt"]
+[ext_resource type="PackedScene" uid="uid://ccq5jxu66pp4h" path="res://Scenes/Pipes/Pipes.tscn" id="3_1h1h0"]
+
+[node name="Test" type="Node2D"]
+
+[node name="Node2D" type="Node2D" parent="."]
+scale = Vector2(0.79, 0.79)
+
+[node name="Parallax2D2" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-80, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D2"]
+texture = ExtResource("1_wjuvt")
+centered = false
+
+[node name="Parallax2D" type="Parallax2D" parent="Node2D"]
+repeat_size = Vector2(1920, 0)
+autoscroll = Vector2(-120, 0)
+
+[node name="Sprite2D" type="Sprite2D" parent="Node2D/Parallax2D"]
+texture = ExtResource("1_dr6pc")
+centered = false
+
+[node name="Pipes" parent="." instance=ExtResource("3_1h1h0")]
+position = Vector2(337, 413)

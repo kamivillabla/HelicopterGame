@@ -1,0 +1,43 @@
+[gd_scene load_steps=7 format=3 uid="uid://c4lr8gwujh75k"]
+
+[ext_resource type="Script" uid="uid://cnceemlh1516y" path="res://Scenes/Game/Game.gd" id="1_ln2h6"]
+[ext_resource type="Texture2D" uid="uid://cdp1dsfvsaj5" path="res://assets/background/rocks_2.png" id="1_rdw05"]
+[ext_resource type="PackedScene" uid="uid://bun6kyo1k7c40" path="res://Scenes/ParallaxBg/ParallaxBg.tscn" id="2_3k6gv"]
+[ext_resource type="PackedScene" uid="uid://5y05liutf6tu" path="res://Scenes/Plane/Plane.tscn" id="2_gwu2e"]
+[ext_resource type="PackedScene" uid="uid://3xi27p0ob6hn" path="res://Scenes/Barrier/Barrier.tscn" id="3_xbxml"]
+[ext_resource type="PackedScene" uid="uid://cthfh12kq17ym" path="res://Scenes/GameUi/GameUi.tscn" id="5_y3kpf"]
+
+[node name="Game" type="Node2D"]
+script = ExtResource("1_ln2h6")
+
+[node name="ParallaxBg" parent="." instance=ExtResource("2_3k6gv")]
+visible = false
+
+[node name="Rocks2" type="Sprite2D" parent="."]
+position = Vector2(201, 326)
+texture = ExtResource("1_rdw05")
+
+[node name="Barrier" parent="." instance=ExtResource("3_xbxml")]
+collision_layer = 2
+collision_mask = 0
+
+[node name="PipesHolder" type="Node" parent="."]
+
+[node name="SpawnTimer" type="Timer" parent="."]
+wait_time = 1.2
+autostart = true
+
+[node name="UpperPoint" type="Marker2D" parent="."]
+position = Vector2(509, 254)
+
+[node name="LowerPoint" type="Marker2D" parent="."]
+position = Vector2(509, 591)
+
+[node name="CanvasLayer" type="CanvasLayer" parent="."]
+
+[node name="GameUi" parent="CanvasLayer" instance=ExtResource("5_y3kpf")]
+
+[node name="Plane" parent="." instance=ExtResource("2_gwu2e")]
+position = Vector2(135, 505)
+
+[connection signal="timeout" from="SpawnTimer" to="." method="_on_spawn_timer_timeout"]

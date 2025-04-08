@@ -1,0 +1,94 @@
+[gd_scene load_steps=6 format=3 uid="uid://cthfh12kq17ym"]
+
+[ext_resource type="LabelSettings" uid="uid://bgdg5shqn4uuh" path="res://Resources/red_title_32.tres" id="1_mb7aw"]
+[ext_resource type="Script" uid="uid://btlp76u7b0cjo" path="res://Scenes/GameUi/GameUi.gd" id="1_tt7lr"]
+[ext_resource type="LabelSettings" uid="uid://c8tua58hd8m4l" path="res://Resources/white_title_48.tres" id="2_anolp"]
+[ext_resource type="LabelSettings" uid="uid://cjmpdnuhf025w" path="res://Resources/red_title_72.tres" id="3_tt7lr"]
+[ext_resource type="AudioStream" uid="uid://dhxg56ghix2s3" path="res://assets/audio/score.wav" id="5_5hvfd"]
+
+[node name="GameUi" type="Control"]
+process_mode = 3
+layout_mode = 3
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+script = ExtResource("1_tt7lr")
+metadata/_edit_use_anchors_ = true
+
+[node name="MarginContainer" type="MarginContainer" parent="."]
+layout_mode = 1
+anchors_preset = 15
+anchor_right = 1.0
+anchor_bottom = 1.0
+grow_horizontal = 2
+grow_vertical = 2
+theme_override_constants/margin_left = 12
+theme_override_constants/margin_top = 12
+theme_override_constants/margin_right = 12
+theme_override_constants/margin_bottom = 12
+
+[node name="ScoreLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 0
+size_flags_vertical = 0
+text = "0000"
+label_settings = ExtResource("1_mb7aw")
+
+[node name="LevelUpLabel" type="Label" parent="MarginContainer"]
+visible = false
+layout_mode = 2
+size_flags_horizontal = 4
+text = "¡Nivel X alcanzado!"
+label_settings = ExtResource("1_mb7aw")
+
+[node name="CurrentLevelLabel" type="Label" parent="MarginContainer"]
+layout_mode = 2
+size_flags_horizontal = 8
+size_flags_vertical = 0
+text = "Nivel: 1"
+label_settings = ExtResource("1_mb7aw")
+
+[node name="PressSpaceLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -45.5
+offset_top = -11.5
+offset_right = 45.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Press Space"
+label_settings = ExtResource("2_anolp")
+
+[node name="GameOverLabel" type="Label" parent="."]
+visible = false
+layout_mode = 1
+anchors_preset = 8
+anchor_left = 0.5
+anchor_top = 0.5
+anchor_right = 0.5
+anchor_bottom = 0.5
+offset_left = -43.5
+offset_top = -11.5
+offset_right = 43.5
+offset_bottom = 11.5
+grow_horizontal = 2
+grow_vertical = 2
+text = "Game Over"
+label_settings = ExtResource("3_tt7lr")
+
+[node name="Timer" type="Timer" parent="."]
+wait_time = 2.0
+one_shot = true
+
+[node name="Sound" type="AudioStreamPlayer" parent="."]
+stream = ExtResource("5_5hvfd")
+
+[connection signal="timeout" from="Timer" to="." method="_on_timer_timeout"]
