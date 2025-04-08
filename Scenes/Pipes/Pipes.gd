@@ -11,7 +11,7 @@ var _gap_size: float = 250.0
 
 func _ready() -> void:
 	if not top_pipe or not bottom_pipe or not laser:
-		push_error("❌ No se encontraron TopPipe, BottomPipe o Laser")
+		push_error("No se encontraron TopPipe, BottomPipe o Laser")
 		return
 
 	top_pipe.position.y = -_gap_size / 2.0
